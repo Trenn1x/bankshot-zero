@@ -25,3 +25,11 @@ Record the browser, date, checks, and screenshot paths here after the smoke test
 - Browser: Java entry point loaded without console errors, title and gameplay rendered, held fire produced seven shots, movement changed player X from560 to265, dash started its cooldown, and pause stopped the game.
 - Screenshots: [title](screenshots/title.jpg) and [gameplay](screenshots/gameplay.jpg).
 - Packaging: root index.html and game.js, no external runtime requests, project and TeaVM licenses included.
+
+## Published release
+
+- [GitHub Pages](https://trenn1x.github.io/bankshot-zero/) serves index.html, game.js, and icon.svg byte-for-byte identical to the tested build.
+- [GitHub v1.0.0](https://github.com/Trenn1x/bankshot-zero/releases/tag/v1.0.0) includes the browser ZIP; build/release and Pages workflows passed.
+- [Itch.io](https://trenn1x.itch.io/bankshot-zero) is public, its version API reports1.0.0, and Butler build2199633 is complete.
+- Live itch embed loaded Java game, started a run, accepted dash input, and paused successfully.
+- [Published game screenshot](screenshots/itch-published.jpg).
