@@ -58,3 +58,10 @@ Record the browser, date, checks, and screenshot paths here after the smoke test
 - Starting muted and then tapping Sound On creates a running AudioContext in the tap handler.
 - Screenshots: [portrait](screenshots/mobile-portrait.jpg), [landscape](screenshots/mobile-landscape.jpg).
 - These checks used Chromium with mobile viewports, browser PointerEvent integration, and trusted pointer input. Physical iOS/Android hardware has not been tested here.
+
+### Published v1.1.0
+
+- GitHub Pages serves the tested index.html, game.js, and icon.svg exactly; all version 1.1.0 build/release/Pages workflows passed.
+- Itch.io version API reports 1.1.0, with Mobile friendly enabled, Default orientation, and keyboard/mouse/touchscreen metadata saved.
+- Live itch game.js and icon.svg match the tested build; itch only appends its standard htmlgame.js loader to index.html.
+- Live thumbstick firing passed at 844×390. [Published mobile screenshot](screenshots/mobile-published.jpg).
