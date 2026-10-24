@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.trenn1x</groupId>
   <artifactId>bankshot-zero</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
   <name>BANKSHOT // ZERO</name>
   <description>A Java arena shooter compiled for the browser with TeaVM.</description>
   <licenses>
@@ -44,7 +44,7 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.14.1</version>
       </plugin>
-      <!-- EngineTest is a standalone regression runner executed below, without JUnit. -->
+      <!-- Standalone regression runners execute below, without JUnit. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -67,6 +67,15 @@
             <goals><goal>java</goal></goals>
             <configuration>
               <mainClass>game.EngineTest</mainClass>
+              <classpathScope>test</classpathScope>
+            </configuration>
+          </execution>
+          <execution>
+            <id>touch-stick-regression-tests</id>
+            <phase>test</phase>
+            <goals><goal>java</goal></goals>
+            <configuration>
+              <mainClass>game.TouchStickTest</mainClass>
               <classpathScope>test</classpathScope>
             </configuration>
           </execution>

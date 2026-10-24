@@ -1,23 +1,220 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#091b22"><meta name="description" content="Every wall is a weapon. A ricochet arena shooter built in Java. Eight waves. One impossible exit.">
 <title>BANKSHOT // ZERO</title>
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
-:root{color-scheme:dark;--ink:#091b22;--panel:#10262d;--line:#294047;--cream:#ecf0dc;--muted:#91a7a5;--orange:#ff7955;--mint:#bbf7ce}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--cream);font-family:Arial,Helvetica,sans-serif}button{font:inherit;cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid var(--mint);outline-offset:5px}main{width:min(1240px,96vw,calc((100dvh - 225px)*1.6));margin:auto}header{display:flex;justify-content:space-between;align-items:center;height:66px;border-bottom:1px solid var(--line)}.brand{font-size:18px;font-weight:900;letter-spacing:-.7px}.brand b{color:var(--orange)}.eyebrow,.micro,.hud-label{font:11px ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:1.7px;text-transform:uppercase}.edition{color:var(--muted);display:flex;align-items:center;gap:9px}.led{width:6px;height:6px;background:var(--mint);box-shadow:0 0 12px #bbf7ce77;border-radius:50%}.hud{height:58px;display:flex;align-items:center;justify-content:space-between;gap:24px}.hud-left,.hud-right{display:flex;gap:32px;align-items:center}.hud-label{color:var(--muted);font-size:9px;letter-spacing:1.5px;margin-bottom:5px}.hud-value{font:19px ui-monospace,SFMono-Regular,Consolas,monospace}.hud-value span{font-size:11px;color:var(--muted)}#health{color:var(--orange);letter-spacing:4px}.tool{border:1px solid var(--line);background:none;color:var(--cream);height:31px;padding:0 11px;font:10px ui-monospace,monospace;letter-spacing:1px}.tool:hover{border-color:var(--orange)}.stage{position:relative;border:1px solid #385059;overflow:hidden;background:#0b2027;aspect-ratio:1120/700;container-type:inline-size}canvas{display:block;width:100%;height:100%;outline:none;touch-action:none;cursor:crosshair}.overlay{position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:#07171ed9;backdrop-filter:blur(7px)}.overlay.active{display:flex}#title{background:linear-gradient(90deg,#0b2027 0%,#0b2027f5 28%,#0b2027a0 52%,transparent 79%);backdrop-filter:none;justify-content:flex-start;pointer-events:none}.title-copy{padding:4% 6%;pointer-events:auto;max-width:640px}.tag{display:inline-flex;align-items:center;gap:9px;color:var(--mint);border:1px solid #bbf7ce44;padding:8px 10px;margin-bottom:22px;font:10px ui-monospace,monospace;letter-spacing:1.5px}.tag:before{content:'↗';font-size:15px}h1{font-weight:900;font-size:clamp(54px,9cqw,110px);line-height:.81;letter-spacing:-.085em;margin:0 0 24px}h1 span{color:var(--orange)}.zero{font-size:19px;letter-spacing:6px;margin-bottom:21px;color:var(--muted);font-family:ui-monospace,monospace}.pitch{font-size:16px;line-height:1.6;color:#b7c6c0;max-width:330px;margin:0 0 27px}.primary{border:0;background:var(--orange);color:var(--ink);font-size:13px;font-weight:900;letter-spacing:1px;padding:17px 22px;min-width:218px;text-align:left;display:inline-flex;justify-content:space-between;gap:32px;align-items:center}.primary:hover{background:#ff9977}.primary span{font-size:22px;line-height:13px}.key-note{font:9px ui-monospace,monospace;letter-spacing:1.2px;color:var(--muted);margin-top:14px}.arena-note{position:absolute;right:33px;bottom:28px;text-align:right;font:10px ui-monospace,monospace;letter-spacing:2px;line-height:1.8;color:var(--muted)}.arena-note b{color:var(--mint);font-weight:400}.center{text-align:center;padding:24px;width:100%}.center h2{font-size:clamp(30px,5vw,64px);font-weight:900;letter-spacing:-2px;margin:14px 0}.center p{color:#adc0bc;line-height:1.6}.center .primary{margin-top:16px}.cards{display:flex;gap:14px;max-width:920px;margin:32px auto 0}.card{text-align:left;flex:1;border:1px solid #4a6468;background:#122c34;color:var(--cream);padding:28px 22px;min-height:190px;transition:transform .15s,border-color .15s}.card:hover{border-color:var(--orange);transform:translateY(-4px)}.card .num{font:11px ui-monospace,monospace;color:var(--orange);margin-bottom:25px;display:block}.card strong{display:block;font-size:19px;margin-bottom:12px}.card small{display:block;color:#adc0bc;font-size:13px;line-height:1.6}#result-score{font:60px ui-monospace,monospace;color:var(--orange);margin:18px}#result-best{font:11px ui-monospace,monospace;letter-spacing:2px}.footer{display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--line);font:10px ui-monospace,monospace;color:var(--muted);line-height:2}.keys{display:flex;gap:22px;flex-wrap:wrap}.keys b{font-weight:400;color:var(--cream);padding:4px 6px;border:1px solid var(--line);margin-right:7px}.bottom{display:flex;justify-content:space-between;padding:14px 0 18px;font:9px ui-monospace,monospace;letter-spacing:1.5px;color:#69868a}.bottom a{color:#91a7a5;text-decoration:none}.mobile-note{display:none}#loader{z-index:10;background:#091b22;font:12px ui-monospace,monospace;letter-spacing:2px}.error{color:var(--orange)}@media(max-width:700px){main{width:96vw}header{height:60px}.edition{font-size:8px}.hud{height:58px;gap:12px}.hud-left,.hud-right{gap:12px}.hud-value{font-size:14px}.hud-label{font-size:8px;letter-spacing:1px}.tool{font-size:8px;padding:0 6px}.stage{min-height:390px;aspect-ratio:1120/700;container-type:inline-size}canvas{object-fit:contain}h1{font-size:65px}.title-copy{padding:5%}.tag{margin-bottom:18px;font-size:8px}.pitch{font-size:12px;max-width:235px;margin-bottom:18px}.zero{font-size:13px;margin-bottom:14px}.primary{padding:13px 17px;font-size:11px}.arena-note{display:none}.cards{gap:7px;margin-top:15px}.card{padding:12px 9px;min-height:158px}.card strong{font-size:14px}.card small{font-size:11px}.card .num{margin-bottom:14px}.footer{font-size:8px;gap:9px}.keys{gap:9px}.bottom{font-size:8px}.mobile-note{display:block;color:var(--orange);font:10px ui-monospace,monospace;padding:12px 0}.center h2{letter-spacing:-1px}}
+:root {
+  color-scheme: dark;
+  --ink: #091b22;
+  --panel: #10262d;
+  --line: #294047;
+  --cream: #ecf0dc;
+  --muted: #91a7a5;
+  --orange: #ff7955;
+  --mint: #bbf7ce;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--ink); color: var(--cream); font-family: Arial, Helvetica, sans-serif; }
+button { font: inherit; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+button:focus-visible, a:focus-visible { outline: 3px solid var(--mint); outline-offset: 5px; }
+main { width: min(1240px, 96vw, calc((100dvh - 225px) * 1.6)); margin: auto; }
+main:fullscreen { width: 100vw; height: 100dvh; background: var(--ink); }
+body:not(.touch-device) main:fullscreen { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+body:not(.touch-device) main:fullscreen > * { width: min(1240px, 96vw, calc((100dvh - 225px) * 1.6)); flex-shrink: 0; }
+header { display: flex; justify-content: space-between; align-items: center; height: 66px; border-bottom: 1px solid var(--line); }
+.brand { font-size: 18px; font-weight: 900; letter-spacing: -.7px; }
+.brand b { color: var(--orange); }
+.eyebrow, .micro, .hud-label { font: 11px ui-monospace, SFMono-Regular, Consolas, monospace; letter-spacing: 1.7px; text-transform: uppercase; }
+.edition { color: var(--muted); display: flex; align-items: center; gap: 9px; }
+.led { width: 6px; height: 6px; background: var(--mint); box-shadow: 0 0 12px #bbf7ce77; border-radius: 50%; }
+.hud { height: 58px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+.hud-left, .hud-right { display: flex; gap: 32px; align-items: center; }
+.hud-label { color: var(--muted); font-size: 9px; letter-spacing: 1.5px; margin-bottom: 5px; }
+.hud-value { font: 19px ui-monospace, SFMono-Regular, Consolas, monospace; }
+.hud-value span { font-size: 11px; color: var(--muted); }
+#health { color: var(--orange); letter-spacing: 4px; }
+.tool { border: 1px solid var(--line); background: none; color: var(--cream); height: 31px; padding: 0 11px; font: 10px ui-monospace, monospace; letter-spacing: 1px; }
+.tool:hover { border-color: var(--orange); }
+.stage { position: relative; border: 1px solid #385059; overflow: hidden; background: #0b2027; aspect-ratio: 1120 / 700; container-type: inline-size; }
+canvas { display: block; width: 100%; height: 100%; outline: none; touch-action: none; cursor: crosshair; }
+.overlay { position: absolute; inset: 0; display: none; align-items: safe center; justify-content: center; overflow-y: auto; overscroll-behavior: contain; background: #07171ed9; backdrop-filter: blur(7px); }
+.overlay.active { display: flex; }
+#title { background: linear-gradient(90deg, #0b2027 0%, #0b2027f5 28%, #0b2027a0 52%, transparent 79%); backdrop-filter: none; justify-content: flex-start; pointer-events: none; }
+.title-copy { padding: 4% 6%; pointer-events: auto; max-width: 640px; margin-block: auto; }
+.tag { display: inline-flex; align-items: center; gap: 9px; color: var(--mint); border: 1px solid #bbf7ce44; padding: 8px 10px; margin-bottom: 22px; font: 10px ui-monospace, monospace; letter-spacing: 1.5px; }
+.tag:before { content: '↗'; font-size: 15px; }
+h1 { font-weight: 900; font-size: clamp(54px, 9cqw, 110px); line-height: .81; letter-spacing: -.085em; margin: 0 0 24px; }
+h1 span { color: var(--orange); }
+.zero { font-size: 19px; letter-spacing: 6px; margin-bottom: 21px; color: var(--muted); font-family: ui-monospace, monospace; }
+.pitch { font-size: 16px; line-height: 1.6; color: #b7c6c0; max-width: 330px; margin: 0 0 27px; }
+.primary { border: 0; background: var(--orange); color: var(--ink); font-size: 13px; font-weight: 900; letter-spacing: 1px; padding: 17px 22px; min-width: 218px; text-align: left; display: inline-flex; justify-content: space-between; gap: 32px; align-items: center; }
+.primary:hover { background: #ff9977; }
+.primary span { font-size: 22px; line-height: 13px; }
+.key-note { font: 9px ui-monospace, monospace; letter-spacing: 1.2px; color: var(--muted); margin-top: 14px; }
+.touch-copy { display: none; }
+.arena-note { position: absolute; right: 33px; bottom: 28px; text-align: right; font: 10px ui-monospace, monospace; letter-spacing: 2px; line-height: 1.8; color: var(--muted); }
+.arena-note b { color: var(--mint); font-weight: 400; }
+.center { text-align: center; padding: 24px; width: 100%; margin-block: auto; }
+.center h2 { font-size: clamp(30px, 5vw, 64px); font-weight: 900; letter-spacing: -2px; margin: 14px 0; }
+.center p { color: #adc0bc; line-height: 1.6; }
+.center .primary { margin-top: 16px; }
+.cards { display: flex; gap: 14px; max-width: 920px; margin: 32px auto 0; }
+.card { text-align: left; flex: 1; border: 1px solid #4a6468; background: #122c34; color: var(--cream); padding: 28px 22px; min-height: 190px; transition: transform .15s, border-color .15s; }
+.card:hover { border-color: var(--orange); transform: translateY(-4px); }
+.card .num { font: 11px ui-monospace, monospace; color: var(--orange); margin-bottom: 25px; display: block; }
+.card strong { display: block; font-size: 19px; margin-bottom: 12px; }
+.card small { display: block; color: #adc0bc; font-size: 13px; line-height: 1.6; }
+#result-score { font: 60px ui-monospace, monospace; color: var(--orange); margin: 18px; }
+#result-best { font: 11px ui-monospace, monospace; letter-spacing: 2px; }
+.footer { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); font: 10px ui-monospace, monospace; color: var(--muted); line-height: 2; }
+.keys { display: flex; gap: 22px; flex-wrap: wrap; }
+.keys b { font-weight: 400; color: var(--cream); padding: 4px 6px; border: 1px solid var(--line); margin-right: 7px; }
+.bottom { display: flex; justify-content: space-between; padding: 14px 0 18px; font: 9px ui-monospace, monospace; letter-spacing: 1.5px; color: #69868a; }
+.bottom a { color: #91a7a5; text-decoration: none; }
+.touch-controls, #touch-hint { display: none; }
+#loader { z-index: 10; background: #091b22; font: 12px ui-monospace, monospace; letter-spacing: 2px; text-align: center; padding: 16px; }
+.error { color: var(--orange); line-height: 1.8; }
+@media (max-width: 700px) {
+  main { width: 96vw; }
+  header { height: 50px; }
+  .brand { font-size: 15px; }
+  .edition .eyebrow { font-size: 8px; }
+  .hud { gap: 12px; }
+  .hud-left, .hud-right { gap: 12px; }
+  .hud-value { font-size: 14px; }
+  .hud-label { font-size: 8px; letter-spacing: 1px; }
+  .tool { font-size: 8px; padding: 0 6px; }
+  .arena-note { display: none; }
+  .footer { font-size: 8px; gap: 9px; }
+  .keys { gap: 9px; }
+  .bottom { font-size: 8px; }
+}
+/* Touch controls live outside the arena, leaving every projectile visible. */
+body.touch-device { height: 100dvh; overflow: hidden; overscroll-behavior: none; -webkit-user-select: none; user-select: none; }
+.touch-device main { position: relative; width: 100%; height: 100dvh; padding: env(safe-area-inset-top, 0px) max(10px, env(safe-area-inset-right, 0px)) env(safe-area-inset-bottom, 0px) max(10px, env(safe-area-inset-left, 0px)); }
+.touch-device header, .touch-device .footer, .touch-device .bottom { display: none; }
+.touch-device .hud { height: 50px; gap: 8px; }
+.touch-device .hud-left, .touch-device .hud-right { gap: 12px; }
+.touch-device .hud-value { font-size: 14px; white-space: nowrap; }
+.touch-device .hud-value span { font-size: 9px; }
+.touch-device .hud-label { font-size: 8px; letter-spacing: 1px; margin-bottom: 4px; }
+.touch-device #health { letter-spacing: 2px; }
+.touch-device .tool { height: 44px; min-width: 44px; padding: 0 7px; font-size: 8px; letter-spacing: .3px; }
+.touch-device .stage { width: min(calc(100vw - 292px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px)), calc((100dvh - 54px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) * 1.6)); min-height: 0; margin: 4px auto 0; }
+.touch-device .desktop-copy { display: none; }
+.touch-device .touch-copy { display: inline; }
+.touch-device .arena-note { display: none; }
+.touch-device .touch-controls { position: absolute; inset: 54px 0 env(safe-area-inset-bottom, 0px); display: block; pointer-events: none; opacity: .42; transition: opacity .15s; touch-action: none; }
+.stick-pad { --stick-x: 0px; --stick-y: 0px; position: absolute; bottom: 24px; width: 104px; height: 104px; border: 1px solid #6a939477; border-radius: 50%; background: radial-gradient(circle, #1b3b42 0 1px, transparent 2px 28px, #bbf7ce12 29px 30px, transparent 31px), #10262dbb; touch-action: none; pointer-events: none; }
+#move-pad { left: max(18px, env(safe-area-inset-left, 0px)); }
+#aim-pad { right: max(18px, env(safe-area-inset-right, 0px)); border-color: #ff795577; background-color: #2a292a99; }
+.stick-pad:before, .stick-pad:after { content: ''; position: absolute; background: #91a7a526; pointer-events: none; }
+.stick-pad:before { left: 12px; right: 12px; height: 1px; top: 50%; }
+.stick-pad:after { top: 12px; bottom: 12px; width: 1px; left: 50%; }
+.stick-knob { position: absolute; z-index: 1; left: 50%; top: 50%; width: 38px; height: 38px; border-radius: 50%; background: #bbf7ce; border: 1px solid #e0ffe9; box-shadow: 0 3px 16px #0005; transform: translate(calc(-50% + var(--stick-x)), calc(-50% + var(--stick-y))); pointer-events: none; }
+#aim-pad .stick-knob { background: var(--orange); border-color: #ffc5ac; }
+.stick-label { position: absolute; left: -14px; right: -14px; bottom: -19px; text-align: center; font: 9px ui-monospace, monospace; letter-spacing: 1.7px; color: var(--mint); pointer-events: none; }
+#aim-pad .stick-label { color: #ffad90; }
+#dash-touch { position: absolute; right: max(27px, env(safe-area-inset-right, 0px)); bottom: 150px; min-width: 86px; min-height: 44px; padding: 11px 10px; border: 1px solid #bbf7ce88; border-radius: 4px; background: #163c3b; color: var(--mint); font: 10px ui-monospace, monospace; font-weight: bold; letter-spacing: .7px; touch-action: none; pointer-events: none; }
+#dash-touch:disabled, #dash-touch[data-ready="false"] { color: var(--muted); border-color: var(--line); background: var(--panel); }
+.touch-device[data-state="PLAY"] .touch-controls { opacity: 1; }
+.touch-device[data-state="PLAY"] .stick-pad, .touch-device[data-state="PLAY"] #dash-touch { pointer-events: auto; }
+.touch-device .primary { min-height: 44px; }
+.touch-device .card:hover { transform: none; }
+.touch-device .center { padding: 16px; }
+.touch-device .center h2 { font-size: clamp(24px, 5.8cqw, 42px); margin: 8px 0; letter-spacing: -1px; }
+.touch-device .center p { font-size: 12px; line-height: 1.45; margin: 8px auto; }
+.touch-device .center .eyebrow { font-size: 8px; line-height: 1.5; }
+.touch-device .cards { gap: 8px; margin-top: 16px; }
+.touch-device .card { padding: 13px 11px; min-height: 130px; }
+.touch-device .card .num { font-size: 9px; margin-bottom: 12px; }
+.touch-device .card strong { font-size: 14px; margin-bottom: 8px; }
+.touch-device .card small { font-size: 11px; line-height: 1.4; }
+.touch-device #result-score { font-size: 40px; margin: 8px; }
+.touch-device #result-best { font-size: 9px; line-height: 1.6; }
+.touch-device .center .primary { margin-top: 12px; }
+.touch-device .key-note { font-size: 8px; line-height: 1.5; letter-spacing: .7px; }
+.touch-device:not(.portrait-arena) .title-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 0 22px; width: 100%; max-width: none; padding: 18px 22px; }
+.touch-device:not(.portrait-arena) .tag { grid-column: 1 / -1; grid-row: 1; justify-self: start; padding: 6px 8px; font-size: 8px; margin-bottom: 14px; letter-spacing: 1px; }
+.touch-device:not(.portrait-arena) h1 { grid-column: 1; grid-row: 2 / 5; font-size: clamp(40px, 12cqw, 66px); margin: 0; }
+.touch-device:not(.portrait-arena) .zero { grid-column: 1; grid-row: 5; font-size: 12px; margin: 10px 0 0; letter-spacing: 4px; }
+.touch-device:not(.portrait-arena) .pitch { grid-column: 2; grid-row: 2; font-size: 12px; line-height: 1.4; margin-bottom: 14px; }
+.touch-device:not(.portrait-arena) .title-copy .primary { grid-column: 2; grid-row: 3; min-width: 0; width: 100%; padding: 12px; font-size: 10px; gap: 10px; }
+.touch-device:not(.portrait-arena) .title-copy .key-note { grid-column: 2; grid-row: 4 / 6; margin-top: 10px; }
+/* Portrait rotates the arena in Java, preserving its full playable area. */
+.touch-device.portrait-arena main { display: flex; flex-direction: column; align-items: stretch; }
+.touch-device.portrait-arena header { display: flex; flex: 0 0 32px; height: 32px; }
+.touch-device.portrait-arena .brand { font-size: 13px; letter-spacing: -.5px; }
+.touch-device.portrait-arena .edition { gap: 6px; }
+.touch-device.portrait-arena .edition .eyebrow { font-size: 6px; letter-spacing: .9px; }
+.touch-device.portrait-arena .hud { flex: 0 0 58px; height: 58px; gap: 6px; }
+.touch-device.portrait-arena .hud-left { gap: 8px; }
+.touch-device.portrait-arena .hud-right { gap: 5px; }
+.touch-device.portrait-arena #health { font-size: 12px; letter-spacing: .3px; }
+.touch-device.portrait-arena #sound { width: 44px; max-width: 44px; padding: 3px; white-space: normal; font-size: 8px; line-height: 11px; }
+.touch-device.portrait-arena .hud-left > div:nth-child(3), .touch-device.portrait-arena #fullscreen { display: none; }
+.touch-device.portrait-arena .stage { flex: 0 0 auto; width: min(100%, calc((100dvh - 232px - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px)) * .625)); aspect-ratio: 700 / 1120; margin: 4px auto 0; }
+.touch-device.portrait-arena .stage:has(.overlay.active) { overflow: visible; }
+.touch-device.portrait-arena .overlay { left: 50%; right: auto; width: min(440px, calc(100vw - 20px - env(safe-area-inset-left, 0px) - env(safe-area-inset-right, 0px))); transform: translateX(-50%); z-index: 2; }
+.touch-device.portrait-arena .touch-controls { position: relative; inset: auto; flex: 0 0 116px; width: min(100%, 440px); margin: 0 auto; }
+.touch-device.portrait-arena .stick-pad { width: 94px; height: 94px; bottom: 18px; }
+.touch-device.portrait-arena #move-pad { left: 8px; }
+.touch-device.portrait-arena #aim-pad { right: 8px; }
+.touch-device.portrait-arena #dash-touch { right: auto; left: 50%; bottom: 43px; transform: translateX(-50%); min-width: 78px; font-size: 9px; padding: 11px 8px; }
+.touch-device.portrait-arena #touch-hint { display: block; flex: 0 0 20px; height: 20px; margin: 0; text-align: center; color: var(--muted); font: 8px ui-monospace, monospace; line-height: 16px; letter-spacing: .25px; }
+.touch-device.portrait-arena #title { background: linear-gradient(110deg, #0b2027fa 0%, #0b2027ed 40%, #0b2027a0 100%); }
+.touch-device.portrait-arena .title-copy { width: 100%; padding: 20px; }
+.touch-device.portrait-arena .tag { font-size: 8px; letter-spacing: .8px; padding: 6px 8px; margin-bottom: 18px; gap: 6px; }
+.touch-device.portrait-arena h1 { font-size: clamp(42px, 16cqw, 64px); line-height: .84; margin-bottom: 16px; }
+.touch-device.portrait-arena .zero { font-size: 13px; letter-spacing: 4px; margin-bottom: 16px; }
+.touch-device.portrait-arena .pitch { font-size: 12px; line-height: 1.5; margin-bottom: 18px; }
+.touch-device.portrait-arena .primary { min-width: 0; width: 100%; padding: 14px; font-size: 10px; gap: 12px; }
+.touch-device.portrait-arena .key-note { margin-top: 12px; }
+.touch-device.portrait-arena .center { padding: 14px; }
+.touch-device.portrait-arena .center h2 { font-size: clamp(22px, 8cqw, 32px); line-height: 1; margin: 10px 0; }
+.touch-device.portrait-arena .center p { font-size: 11px; }
+.touch-device.portrait-arena .cards { display: grid; gap: 8px; margin-top: 14px; }
+.touch-device.portrait-arena .card { min-height: 68px; padding: 11px 12px; position: relative; padding-left: 35px; }
+.touch-device.portrait-arena .card .num { position: absolute; left: 10px; top: 13px; font-size: 8px; margin: 0; }
+.touch-device.portrait-arena .card strong { font-size: 14px; margin-bottom: 5px; }
+.touch-device.portrait-arena .card small { font-size: 11px; line-height: 1.4; }
+@media (max-height: 680px) {
+  .touch-device.portrait-arena .center { padding: 10px; }
+  .touch-device.portrait-arena .center h2 { font-size: 22px; margin: 6px 0; }
+  .touch-device.portrait-arena .center p { margin: 4px auto; font-size: 11px; line-height: 1.35; }
+  .touch-device.portrait-arena .cards { margin-top: 10px; gap: 6px; }
+  .touch-device.portrait-arena .card { min-height: 60px; padding: 8px 10px 8px 32px; }
+  .touch-device.portrait-arena .card .num { left: 8px; top: 10px; }
+  .touch-device.portrait-arena .card strong { font-size: 13px; margin-bottom: 4px; }
+  .touch-device.portrait-arena .card small { font-size: 11px; line-height: 1.3; }
+  .touch-device.portrait-arena .title-copy { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14px; padding: 18px 20px; }
+  .touch-device.portrait-arena .tag { grid-column: 1 / -1; grid-row: 1; justify-self: start; margin-bottom: 18px; }
+  .touch-device.portrait-arena h1 { grid-column: 1; grid-row: 2 / 4; font-size: 42px; margin: 0; }
+  .touch-device.portrait-arena .zero { grid-column: 1; grid-row: 4; margin: 10px 0 0; font-size: 11px; }
+  .touch-device.portrait-arena .pitch { grid-column: 2; grid-row: 2 / 5; align-self: center; font-size: 11px; line-height: 1.45; margin: 0; }
+  .touch-device.portrait-arena .title-copy .primary { grid-column: 1 / -1; grid-row: 5; margin-top: 18px; }
+  .touch-device.portrait-arena .title-copy .key-note { grid-column: 1 / -1; grid-row: 6; margin-top: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .card, .touch-controls { transition: none; } }
 </style>
 </head>
 <body><main>
 <header><div class="brand">BANKSHOT <b>//</b> ZERO</div><div class="edition"><span class="led"></span><span class="eyebrow">Java arcade system / 001</span></div></header>
 <div class="hud"><div class="hud-left"><div><div class="hud-label">Sector</div><div class="hud-value" id="wave">01 <span>/ 08</span></div></div><div><div class="hud-label">Integrity</div><div class="hud-value" id="health">●●●●●</div></div><div><div class="hud-label">Dash</div><div class="hud-value" id="dash">READY ↗</div></div></div><div class="hud-right"><div><div class="hud-label">Score</div><div class="hud-value" id="score">000000</div></div><button class="tool" id="sound" aria-label="Toggle sound">SOUND ON</button><button class="tool" id="pause-button" aria-label="Pause game">Ⅱ</button><button class="tool" id="fullscreen" aria-label="Enter fullscreen">⛶</button></div></div>
-<div class="stage" id="stage"><canvas id="game" width="1120" height="700" tabindex="0" aria-label="BANKSHOT ZERO arena. WASD or arrows to move, mouse to aim, hold left click to fire, Space to dash, P to pause."></canvas>
+<div class="stage" id="stage"><canvas id="game" width="1120" height="700" tabindex="0" aria-label="BANKSHOT ZERO arena. Touch: left stick moves, right stick aims and fires, Dash button dodges. Keyboard: WASD or arrows move, mouse aims, hold left click fires, Space dashes, P pauses."></canvas>
 <div class="overlay active" id="loader">BOOTING JAVA ARCADE…</div>
-<div class="overlay" id="title"><div class="title-copy"><div class="tag">Every wall is a weapon</div><h1>BANK<br><span>SHOT.</span></h1><div class="zero">// ZERO</div><p class="pitch">One arena. Eight waves.<br>Make every ricochet count.</p><button class="primary" id="start">ENTER THE ARENA <span>↗</span></button><div class="key-note">OR PRESS ENTER · HEADPHONES RECOMMENDED</div></div><div class="arena-note"><b>BOUNCE. DODGE. REPEAT.</b><br>NO DOWNLOAD / NO INSTALL</div></div>
+<div class="overlay" id="title"><div class="title-copy"><div class="tag">Every wall is a weapon</div><h1>BANK<br><span>SHOT.</span></h1><div class="zero">// ZERO</div><p class="pitch">One arena. Eight waves.<br>Make every ricochet count.</p><button class="primary" id="start">ENTER THE ARENA <span>↗</span></button><div class="key-note"><span class="desktop-copy">OR PRESS ENTER · HEADPHONES RECOMMENDED</span><span class="touch-copy">LEFT STICK MOVE · RIGHT STICK AIM + FIRE</span></div></div><div class="arena-note"><b>BOUNCE. DODGE. REPEAT.</b><br>NO DOWNLOAD / NO INSTALL</div></div>
 <div class="overlay" id="upgrade"><div class="center"><div class="eyebrow" style="color:var(--mint)">Sector secured / choose your edge</div><h2>BUILD YOUR BANKSHOT.</h2><p>Integrity +12, up to your maximum. Choose one upgrade for the next sector.</p><div class="cards"><button class="card" id="upgrade-0"><span class="num">[ 1 ]</span><strong id="up-name-0"></strong><small id="up-desc-0"></small></button><button class="card" id="upgrade-1"><span class="num">[ 2 ]</span><strong id="up-name-1"></strong><small id="up-desc-1"></small></button><button class="card" id="upgrade-2"><span class="num">[ 3 ]</span><strong id="up-name-2"></strong><small id="up-desc-2"></small></button></div></div></div>
-<div class="overlay" id="pause"><div class="center"><div class="eyebrow">Take a breath</div><h2>SYSTEM PAUSED.</h2><p>The arena can wait.</p><button class="primary" id="resume">BACK TO IT <span>↗</span></button><div class="key-note">P / ESC TO RESUME</div></div></div>
-<div class="overlay" id="result"><div class="center"><div class="eyebrow" id="result-label"></div><h2 id="result-title"></h2><div id="result-score"></div><p id="result-detail"></p><div id="result-best"></div><button class="primary" id="restart">ONE MORE RUN <span>↗</span></button><div class="key-note">OR PRESS R</div></div></div>
+<div class="overlay" id="pause"><div class="center"><div class="eyebrow">Take a breath</div><h2>SYSTEM PAUSED.</h2><p>The arena can wait.</p><button class="primary" id="resume">BACK TO IT <span>↗</span></button><div class="key-note"><span class="desktop-copy">P / ESC TO RESUME</span><span class="touch-copy">TAP BACK TO IT TO RESUME</span></div></div></div>
+<div class="overlay" id="result"><div class="center"><div class="eyebrow" id="result-label"></div><h2 id="result-title"></h2><div id="result-score"></div><p id="result-detail"></p><div id="result-best"></div><button class="primary" id="restart">ONE MORE RUN <span>↗</span></button><div class="key-note"><span class="desktop-copy">OR PRESS R</span><span class="touch-copy">A FRESH ARENA. A BETTER BANKSHOT.</span></div></div></div>
 </div>
-<div class="mobile-note">DESKTOP GAME · Keyboard + mouse required</div><div class="footer"><div class="keys"><span><b>W A S D</b> move</span><span><b>MOUSE</b> aim + hold fire</span><span><b>SPACE</b> dash</span><span><b>P</b> pause</span></div><span>WALL HITS = BONUS DAMAGE + SCORE</span></div><div class="bottom"><span>BUILT IN JAVA · COMPILED FOR THE WEB</span><span><a href="https://github.com/Trenn1x/bankshot-zero" target="_blank" rel="noopener">SOURCE ↗</a> &nbsp; / &nbsp; V1.0.0</span></div>
-</main><script src="game.js"></script><script>try{main()}catch(e){document.getElementById('loader').innerHTML='<span class="error">BOOT FAILED · Please reload in a modern desktop browser.</span>';console.error(e)}</script></body></html>
+<section class="touch-controls" aria-label="Touch controls">
+  <div id="move-pad" class="stick-pad" role="group" aria-label="Move joystick"><span class="stick-knob" aria-hidden="true"></span><span class="stick-label" aria-hidden="true">MOVE</span></div>
+  <button id="dash-touch" aria-label="Dash">DASH ↗</button>
+  <div id="aim-pad" class="stick-pad" role="group" aria-label="Aim and fire joystick"><span class="stick-knob" aria-hidden="true"></span><span class="stick-label" aria-hidden="true">AIM / FIRE</span></div>
+</section>
+<p id="touch-hint">LEFT THUMB MOVE · RIGHT THUMB AIM + FIRE</p><div class="footer"><div class="keys"><span><b>W A S D</b> move</span><span><b>MOUSE</b> aim + hold fire</span><span><b>SPACE</b> dash</span><span><b>P</b> pause</span></div><span>WALL HITS = BONUS DAMAGE + SCORE</span></div><div class="bottom"><span>BUILT IN JAVA · COMPILED FOR THE WEB</span><span><a href="https://github.com/Trenn1x/bankshot-zero" target="_blank" rel="noopener">SOURCE ↗</a> &nbsp; / &nbsp; V1.1.0</span></div>
+</main><script src="game.js"></script><script>try{main()}catch(e){document.getElementById('loader').innerHTML='<span class="error">BOOT FAILED · Please reload in a modern browser.</span>';console.error(e)}</script></body></html>

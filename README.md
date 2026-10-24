@@ -6,9 +6,23 @@
 
 A neon projectile arena shooter written in Java. Bounce shots off the arena, weave through enemy fire, and build a loadout between waves.
 
-The game engine and Canvas renderer are Java. [TeaVM](https://teavm.org/) compiles them to JavaScript so the release plays directly in a desktop browser, including on itch.io. Players do not need Java installed.
+The game engine and Canvas renderer are Java. [TeaVM](https://teavm.org/) compiles them to JavaScript so the release plays directly in mobile and desktop browsers, including on itch.io. Players do not need Java installed.
 
 ## Controls
+
+On a phone or tablet, use the touch controls:
+
+| Input | Action |
+| --- | --- |
+| Left stick | Move |
+| Right stick | Aim and fire while held |
+| DASH button | Dash |
+| On-screen buttons | Start, pause/resume, toggle sound, and restart |
+| Tap an upgrade card | Choose an upgrade between waves |
+
+Both portrait and landscape work. Portrait rotates the arena to fit the taller display; landscape provides a wider view. Fullscreen gives the game more space when the browser supports it. Tap the game to enable sound.
+
+Keyboard and mouse controls remain available on desktop:
 
 | Input | Action |
 | --- | --- |
@@ -21,7 +35,7 @@ The game engine and Canvas renderer are Java. [TeaVM](https://teavm.org/) compil
 | M | Toggle sound |
 | Enter / R | Start; restart after a run |
 
-Use a keyboard and mouse. Click inside the game to give it keyboard focus and enable sound.
+Click inside the game to give it keyboard focus and enable sound.
 
 ## Build and play
 
@@ -34,12 +48,12 @@ Install **JDK 21+** and **Maven 3.9+**. Set `JAVA_HOME` if Java is not on your p
 
 Open **http://127.0.0.1:8080**. Python 3 is used only by the local preview server. Choose another port with `PORT=8081 ./scripts/serve.sh`.
 
-The build runs the headless Java engine regression tests, compiles the browser game, then creates:
+The build runs the headless Java engine and touch-stick regression tests, compiles the browser game, then creates:
 
 - `dist/web/` — the complete static game.
 - `dist/bankshot-zero-web.zip` — the itch.io upload, with `index.html` at its root.
 
-To run only the engine tests:
+To run only the Java regression tests:
 
 ```bash
 ./scripts/mvn.sh --batch-mode --no-transfer-progress test
@@ -50,6 +64,7 @@ To run only the engine tests:
 - `src/main/java/game/Engine.java` — simulation and projectile collision rules.
 - `src/main/java/game/WebGame.java` — browser input, rendering, and audio.
 - `src/test/java/game/EngineTest.java` — headless regression checks.
+- `src/test/java/game/TouchStickTest.java` — touch-stick input regression checks.
 - `web/` — responsive browser shell.
 - `scripts/` — build, packaging, and local preview commands.
 - `.github/workflows/` — test/build, tagged releases, and GitHub Pages publishing.

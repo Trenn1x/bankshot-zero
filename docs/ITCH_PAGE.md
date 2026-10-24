@@ -4,9 +4,21 @@
 
 Step into a neon arena where every wall is another weapon. Aim, fire, dash through danger, and turn ricochets into a way out. Clear each wave, choose an upgrade, and see how far your loadout can carry you.
 
-A fast arcade projectile shooter written in Java and compiled for the browser. Play free with a keyboard and mouse. No install required.
+A fast arcade projectile shooter written in Java and compiled for the browser. Play free on mobile or desktop. No install required.
 
 ## How to play
+
+**Phone / tablet**
+
+- **Left stick:** move
+- **Right stick:** aim and fire while held
+- **DASH button:** dash
+- **Tap an upgrade card:** pick an upgrade
+- **On-screen buttons:** start, pause/resume, toggle sound, and restart
+
+Play in portrait or landscape. The arena rotates to fit portrait screens. Tap the game to enable sound; fullscreen is recommended when available.
+
+**Keyboard / mouse**
 
 - **WASD / arrows:** move
 - **Mouse:** aim
@@ -17,7 +29,7 @@ A fast arcade projectile shooter written in Java and compiled for the browser. P
 - **M:** mute / unmute
 - **Enter / R:** start or restart after a run
 
-Click inside the game to focus it and enable sound. Fullscreen is recommended. Designed for desktop browsers with a keyboard and mouse.
+Click inside the game to focus it and enable sound.
 
 ## Listing metadata
 
@@ -25,6 +37,7 @@ Click inside the game to focus it and enable sound. Fullscreen is recommended. D
 - Genre: **Shooter**
 - Tags: **Arcade, Bullet Hell, Top-Down, Singleplayer, Sci-fi, Java**
 - Platforms: **HTML5 / browser**
-- Input: **Keyboard, Mouse**
+- Input: **Touchscreen, Keyboard, Mouse**
+- Mobile friendly: **Yes — portrait and landscape**
 - Session: **A few minutes**
 - License: **MIT**
