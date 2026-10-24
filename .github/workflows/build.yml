@@ -1,0 +1,52 @@
+name: Build and release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-java@v6.1.0
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+      - name: Test Java engine and build browser release
+        run: ./scripts/build.sh
+      - uses: actions/upload-artifact@v7.0.2
+        with:
+          name: bankshot-zero-web
+          path: dist/bankshot-zero-web.zip
+          if-no-files-found: error
+
+  release:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/download-artifact@v8.0.2
+        with:
+          name: bankshot-zero-web
+          path: dist
+      - name: Publish browser archive to GitHub Releases
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" dist/bankshot-zero-web.zip --clobber
+          else
+            gh release create "$RELEASE_TAG" dist/bankshot-zero-web.zip --verify-tag --title "BANKSHOT // ZERO $RELEASE_TAG" --notes-file docs/release-notes.md
+          fi
